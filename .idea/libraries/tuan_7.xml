@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="tuan_7">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/build/classes/tuan_3/bubble_algorithm.zip!/" />
+      <root url="jar://$PROJECT_DIR$/build/classes/tuan_3/stack.zip!/" />
+      <root url="jar://$PROJECT_DIR$/build/classes/tuan_3/binary_search.zip!/" />
+      <root url="jar://$PROJECT_DIR$/build/classes/tuan_3/quick_sort.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

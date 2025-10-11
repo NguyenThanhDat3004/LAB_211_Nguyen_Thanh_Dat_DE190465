@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="tuan_2">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/src/tuan_2/chuong_trinh_tinh_chu_vi_va_dien_tich.zip!/" />
+      <root url="jar://$PROJECT_DIR$/src/tuan_2/chuong_trinh_may_tinh.zip!/" />
+      <root url="jar://$PROJECT_DIR$/src/tuan_2/matrix.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
