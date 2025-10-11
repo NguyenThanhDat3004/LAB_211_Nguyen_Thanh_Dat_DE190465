@@ -1,0 +1,18 @@
+Trong sql co 1 loi la sql injection rat hay bi hacker loi dung lay thong tin
+Vi vay chung ta nen su dung cai PreparedStatement
+Mot so dieu de nhan thay khi su dung Statement
+Select * from course where course_id like "1%" or 1=1;
+ve ben kia luon dung vi vay no se lay ra het tat ca cac thong tin cua ben cai dieu kien kia luon
+Mot vi du khac neu chung ta luu mat khau va tenTaiKhoan thi lai choi bai the
+select * from user where username = "Dat" or password = "123456"; ==> coi ten Dat co ton tai trong he thong khong
+Gia su chung ta la hacker:
+--user: a1 or 1=1;--   co tinh tan cong
+-- pass: thich gi nhap nay
+==> chuyen sang chuong trinh thi no co dang
+select * from user where username = "a1" or 1=1;--password="123==>thuc thi thi coi nhu chung ta chi thuc hien toi or 1=1 thoi
+con sau -- thi no da bien thanh mot ghi chu ==> toan bo du lieu bi loi len
+
+
+==> loi lap trinh pho bien va khi dung statement cung se bi
+kieu nguoi ta nhap vao mot phan cau lenh sql:)))
+
