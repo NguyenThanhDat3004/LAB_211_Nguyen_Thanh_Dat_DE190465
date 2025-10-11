@@ -22,7 +22,7 @@ public class CourseManagement {
     public CourseManagement(){
         this.listCourse = CourseDAO.getInstance().selectAll();
         this.listCourseOffline = OfflineCourseDAO.getInstance().selectAll();
-        listCourseOnline = OnlineDAO.getInstance().selectAll();
+        this.listCourseOnline = OnlineDAO.getInstance().selectAll();
     }
     // get set
 
@@ -53,7 +53,7 @@ public class CourseManagement {
     public void addOfflineCourse(OfflineCourse c){
         if(checkContain(c)) {
             CourseDAO.getInstance().add(c);
-            OnlineDAO.getInstance().add(c);
+            OfflineCourseDAO.getInstance().add(c);
         }else{
             System.out.println("This course is contain in list");
         }

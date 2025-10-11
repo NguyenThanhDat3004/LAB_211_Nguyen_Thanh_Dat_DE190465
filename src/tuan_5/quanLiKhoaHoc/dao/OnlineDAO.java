@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OnlineDAO implements DAOInterface<OnlineCourse> {
-    public static CourseDAO getInstance(){
-        return new CourseDAO();
+    public static OnlineDAO getInstance(){
+        return new OnlineDAO();
     }
     @Override
     public int add(OnlineCourse onlineCourse) {
