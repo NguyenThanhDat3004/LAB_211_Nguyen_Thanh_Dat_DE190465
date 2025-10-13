@@ -100,6 +100,6 @@ public class App extends Menu1{
     // main chinh
     public static void main(String[] args) {
         App a = new App();
-        
+        a.run();
     }
 }

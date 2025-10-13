@@ -54,5 +54,13 @@ public class OfflineCourse extends Course{
     public void setCampus(String campus) {
         this.campus = campus;
     }
-    
+
+    @Override
+    public String toString() {
+        return "OfflineCourse{" +
+                "begin='" + begin + '\'' +
+                ", end='" + end + '\'' +
+                ", campus='" + campus + '\'' +
+                '}';
+    }
 }

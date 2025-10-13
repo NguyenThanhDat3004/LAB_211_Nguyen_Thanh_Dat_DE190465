@@ -35,7 +35,7 @@ public class OfflineCourseDAO implements DAOInterface<OfflineCourse>{
             st.setString(6,offlineCourse.getCampus());
             // buoc 3: thuc thi cau lenh sql
 
-            result = st.executeUpdate(sql);
+            result = st.executeUpdate();
             // buoc 4: xu li ket qua
             System.out.println("You excuted: "+sql);
             System.out.println("Have "+result+" changed");
@@ -62,7 +62,7 @@ public class OfflineCourseDAO implements DAOInterface<OfflineCourse>{
             st.setString(5,offlineCourse.getEnd());
             st.setString(6,offlineCourse.getCampus());
             st.setString(7,offlineCourse.getCourseID());
-            result = st.executeUpdate(sql);
+            result = st.executeUpdate();
             System.out.println("You excuted: "+sql);
             System.out.println("Have "+result+" changed");
             JDBCUtils.closeConnection(con);
@@ -81,7 +81,7 @@ public class OfflineCourseDAO implements DAOInterface<OfflineCourse>{
                     " WHERE course_id =? ";
             PreparedStatement st = con.prepareStatement(sql);
             st.setString(1,offlineCourse.getCourseID());
-            result = st.executeUpdate(sql);
+            result = st.executeUpdate();
             System.out.println("You excuted: "+sql);
             System.out.println("Have "+result+" changed");
             JDBCUtils.closeConnection(con);
@@ -97,11 +97,11 @@ public class OfflineCourseDAO implements DAOInterface<OfflineCourse>{
         // bat ngoai le
         try {
             Connection con = JDBCUtils.getConnection();
-            String sql = "SELECT * FROM Course";
+            String sql = "SELECT * FROM OfflineCourse";
             PreparedStatement st = con.prepareStatement(sql);
             System.out.println(sql);
             // lay du lieu trong csdl va dua len chuong trinh
-            ResultSet rs = st.executeQuery(sql); // day la 1 table co nhieu dong ben trong
+            ResultSet rs = st.executeQuery(); // day la 1 table co nhieu dong ben trong
             // buoc 4: xu li
             while (rs.next()) {
                 // neu con du lieu next 1 phat, kieu tien toi thoi

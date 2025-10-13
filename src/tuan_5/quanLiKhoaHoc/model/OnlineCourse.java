@@ -54,11 +54,11 @@ public class OnlineCourse extends Course{
         this.platform = platform;
     }
 
-    
-    
-    
-    
-    
-    
-    
+
+    @Override
+    public String toString() {
+        return  "platform='" + platform + '\'' +
+                ", instructors='" + instructors + '\'' +
+                ", note='" + note ;
+    }
 }

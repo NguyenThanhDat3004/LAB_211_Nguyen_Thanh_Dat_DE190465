@@ -12,6 +12,7 @@ import tuan_5.quanLiKhoaHoc.model.CourseManagement;
  */
 public class Solution {
     public void displayList(CourseManagement c){
+        c.load();
         System.out.println("List of course: ");
         for(int i = 0;i<c.getListCourse().size();i++){
             System.out.println(c.getListCourse().get(i));

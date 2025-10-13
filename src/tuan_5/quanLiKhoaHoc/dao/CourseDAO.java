@@ -1,6 +1,4 @@
 package tuan_5.quanLiKhoaHoc.dao;
-
-import test_su_dung_jbdc.JDBC_Utils;
 import tuan_5.quanLiKhoaHoc.model.Course;
 
 import java.sql.*;
@@ -25,7 +23,7 @@ public class CourseDAO implements  DAOInterface<Course> {
             st.setString(2,course.getCourseName());
             st.setInt(3,course.getCredits());
 
-            result = st.executeUpdate(sql); // tra ve so luong dong bi thay doi
+            result = st.executeUpdate(); // tra ve so luong dong bi thay doi
             System.out.println("You excuted: " + sql);
             System.out.println("Have " + result + " changed");
             JDBCUtils.closeConnection(co);
@@ -69,7 +67,7 @@ public class CourseDAO implements  DAOInterface<Course> {
                     "WHERE course_id=? ";
             PreparedStatement st = co.prepareStatement(sql);
             st.setString(1,course.getCourseID());
-            result = st.executeUpdate(sql); // tra ve so luong dong bi thay doi
+            result = st.executeUpdate(); // tra ve so luong dong bi thay doi
             System.out.println("You excuted: " + sql);
             System.out.println("Have " + result + " changed");
             JDBCUtils.closeConnection(co);
@@ -104,7 +102,7 @@ public class CourseDAO implements  DAOInterface<Course> {
                 list.add(course);
             }
             // buoc 5: ngat ket noi
-            JDBC_Utils.closeConnection(con);
+            JDBCUtils.closeConnection(con);
 
         } catch (Exception e) {
             e.printStackTrace();

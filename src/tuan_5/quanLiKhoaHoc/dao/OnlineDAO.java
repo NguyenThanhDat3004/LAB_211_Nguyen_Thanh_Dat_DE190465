@@ -26,7 +26,7 @@ public class OnlineDAO implements DAOInterface<OnlineCourse> {
             st.setString(4,onlineCourse.getPlatform());
             st.setString(5,onlineCourse.getNote());
             st.setString(6,onlineCourse.getInstructors());
-            result = st.executeUpdate(sql);
+            result = st.executeUpdate();
             System.out.println("You executed: "+sql);
             System.out.println("Have "+result+" changed");
             JDBCUtils.closeConnection(con);
@@ -53,7 +53,7 @@ public class OnlineDAO implements DAOInterface<OnlineCourse> {
             st.setString(5,onlineCourse.getNote());
             st.setString(6,onlineCourse.getInstructors());
             st.setString(7,onlineCourse.getCourseID());
-            result = st.executeUpdate(sql);
+            result = st.executeUpdate();
             System.out.println("You executed: "+sql);
             System.out.println("Have "+result+" changed");
             JDBCUtils.closeConnection(con);
@@ -72,7 +72,7 @@ public class OnlineDAO implements DAOInterface<OnlineCourse> {
                     " WHERE course_id=?";
             PreparedStatement st = con.prepareStatement(sql);
             st.setString(1,onlineCourse.getCourseID());
-            result = st.executeUpdate(sql);
+            result = st.executeUpdate();
             System.out.println("You executed: "+sql);
             System.out.println("Have "+result+" changed");
             JDBCUtils.closeConnection(con);
@@ -88,10 +88,10 @@ public class OnlineDAO implements DAOInterface<OnlineCourse> {
         // bat ngoai le
         try {
             Connection con = JDBCUtils.getConnection();
-            String sql = "SELECT * FROM Course";
+            String sql = "SELECT * FROM OnlineCourse";
             PreparedStatement st = con.prepareStatement(sql);
             System.out.println(sql);
-            ResultSet rs = st.executeQuery(sql); // day la 1 table co nhieu dong ben trong
+            ResultSet rs = st.executeQuery(); // day la 1 table co nhieu dong ben trong
             while (rs.next()) {
                 // neu con du lieu next 1 phat, kieu tien toi thoi
                 String id = rs.getString("course_id");
@@ -99,7 +99,7 @@ public class OnlineDAO implements DAOInterface<OnlineCourse> {
                 int credit = rs.getInt("credits");
                 String platform = rs.getString("platform");
                 String note = rs.getString("note");
-                String instructor = rs.getString("instructor");
+                String instructor = rs.getString("instructors");
                 OnlineCourse course = new OnlineCourse(platform,note,instructor,new Course(id,name,credit));
                 list.add(course);
             }

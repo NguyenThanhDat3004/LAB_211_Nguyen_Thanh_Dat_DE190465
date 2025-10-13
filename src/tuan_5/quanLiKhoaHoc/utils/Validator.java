@@ -30,7 +30,7 @@ public class Validator {
         while(true){
             try {
                 begin  = sc.nextLine();
-                if(LocalDate.parse(begin, DateTimeFormatter.ofPattern("dd/MM/yyyy")).isBefore(LocalDate.now())){
+                if(LocalDate.parse(begin, DateTimeFormatter.ISO_DATE).isBefore(LocalDate.now())){
                     System.out.println("Begin date must after now!");
                     continue;
                 }
@@ -48,11 +48,11 @@ public class Validator {
         while(true){
             try {
                 end  = sc.nextLine();
-                if(LocalDate.parse(end, DateTimeFormatter.ofPattern("dd/MM/yyyy")).isBefore(LocalDate.now())){
-                    System.out.println("Begin date must after now!");
+                if(LocalDate.parse(end, DateTimeFormatter.ISO_DATE).isBefore(LocalDate.now())){
+                    System.out.println("End date must after now!");
                     continue;
                 }
-                if(LocalDate.parse(end, DateTimeFormatter.ofPattern("dd/MM/yyyy")).isBefore(LocalDate.parse(begin, DateTimeFormatter.ofPattern("dd/MM/yyyy")))){
+                if(LocalDate.parse(end, DateTimeFormatter.ISO_DATE).isBefore(LocalDate.parse(begin, DateTimeFormatter.ISO_DATE))){
                     System.out.println("End date must after begin date!");
                     continue;
                 }
@@ -108,7 +108,6 @@ public class Validator {
     // nhap vao khoa online
     public static OnlineCourse inputOnlineCourse(String msg){
         Course c = inputCourse("Enter Information:");
-        int credits = checkNum("Enter credits:");
         System.out.println("Please enter platform: ");
         String platform = sc.nextLine();
         System.out.println("Please enter instructors: ");

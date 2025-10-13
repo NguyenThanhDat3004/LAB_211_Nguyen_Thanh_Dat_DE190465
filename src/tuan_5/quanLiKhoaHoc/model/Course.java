@@ -49,4 +49,13 @@ public class Course {
         this.credits = credits;
     }
     // courseName va courseID phai la duy nhat
+
+    @Override
+    public String toString() {
+        return "Course{" +
+                "courseID='" + courseID + '\'' +
+                ", courseName='" + courseName + '\'' +
+                ", credits=" + credits +
+                '}';
+    }
 }
