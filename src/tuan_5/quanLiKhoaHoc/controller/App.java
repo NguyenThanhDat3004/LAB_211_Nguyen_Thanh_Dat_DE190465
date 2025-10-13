@@ -3,15 +3,24 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package tuan_5.quanLiKhoaHoc.controller;
+import tuan_5.quanLiKhoaHoc.model.Course;
 import tuan_5.quanLiKhoaHoc.model.CourseManagement;
+import tuan_5.quanLiKhoaHoc.model.OfflineCourse;
+import tuan_5.quanLiKhoaHoc.model.OnlineCourse;
 import tuan_5.quanLiKhoaHoc.utils.Validator;
 import tuan_5.quanLiKhoaHoc.view.Menu1;
+import tuan_5.quanLiKhoaHoc.view.Solution;
+
+import java.util.Scanner;
+
 /**
  *
  * @author nguye
  */
 public class App extends Menu1{
     CourseManagement m = new CourseManagement();
+    Solution so = new Solution();
+    Scanner sc = new Scanner(System.in);
     // goi cons
     public App(){
         super("Course Management", new String[]{
@@ -43,13 +52,41 @@ public class App extends Menu1{
                 }
                 break;
             case 2:
-
+                // ham cap nhat
+                System.out.println("Enter ID: ");
+                String id= sc.nextLine();
+                Course b = m.searchById(id);
+                if(b!=null){
+                    if(b instanceof OfflineCourse){
+                        OfflineCourse c = Validator.updateInputOfflineCourse("Enter your update: ");
+                        c.setCourseID(id);
+                        m.updateOffline(c);
+                    }
+                    if(b instanceof OnlineCourse){
+                        OnlineCourse c =  Validator.inputUpdateOnlineCourse("Enter your update: ");
+                        c.setCourseID(id);
+                        m.updateOnline(c);
+                    }
+                }else{
+                    System.out.println("Can not find in list");
+                }
                 break;
             case 3:
+                // ham  xoa
+                System.out.println("Enter id course you want delete: ");
+                String id1 = sc.nextLine();
+                m.searchById(id1);
+                Course c = m.searchById(id1);
+                if(c!=null) m.delete(c);
+                else System.out.println("Can not find this id");
                 break;
             case 4:
+                System.out.println("Print all / online course / offline course");
+                so.displayList(m);
                 break;
             case 5:
+                System.out.println("Search information base on course name");
+                so.displayListSearch(m);
                 break;
             case 6: 
                 System.out.println("Exitting");

@@ -49,11 +49,18 @@ public class CourseManagement {
         Predicate<Course> contain = containId.and(containName);
         return listCourse.stream().filter(contain).collect(Collectors.toList()).isEmpty();
     }
+    // ham load co so du lieu vao list
+    public void load(){
+        listCourse = CourseDAO.getInstance().selectAll();
+        listCourseOnline = OnlineDAO.getInstance().selectAll();
+        listCourseOffline = OfflineCourseDAO.getInstance().selectAll();
+    }
     // them khoa hoc
     public void addOfflineCourse(OfflineCourse c){
         if(checkContain(c)) {
             CourseDAO.getInstance().add(c);
             OfflineCourseDAO.getInstance().add(c);
+            load();
         }else{
             System.out.println("This course is contain in list");
         }
@@ -62,24 +69,48 @@ public class CourseManagement {
         if(checkContain(c)) {
             CourseDAO.getInstance().add(c);
             OnlineDAO.getInstance().add(c);
+            load();
         }else{
             System.out.println("This course is contain in list");
         }
     }
-    //Cập nhật thông tin khóa học
-    public void update(Course c){
-        if(checkContain(c)==true) {
-            System.out.println("Can not find course");
-        }else{
-            System.out.println("This course is contain in list");
-        }
+    // tim theo ten
+    public void searchByName(String name){
+        load();
+        listSearch.clear();
+        listSearch = listCourse.stream().filter(s->s.getCourseName().equalsIgnoreCase(name)).toList();
     }
-    //Xóa khóa học
-    //
-    //In ra danh sách tất cả / khóa học online / khóa học offline
-    //
-    //Tìm kiếm thông tin theo tên khóa học
-    //
-    //Thoát chương trình
-    
+    // tim kiem theo id
+    public Course searchById(String id){
+        listSearch.clear();
+        return listCourse.stream().filter(s->s.getCourseID().equalsIgnoreCase(id)).findFirst().orElse(null);
+    }
+    // ham update online
+    public void updateOnline(OnlineCourse c){
+        if(checkContain(c)){
+            OnlineDAO.getInstance().update(c);
+            CourseDAO.getInstance().update(c);
+            load();
+        } else System.out.println("Can not change! This course already contained");
+    }
+    // ham update offline
+    public void updateOffline(OfflineCourse c){
+        if(checkContain(c)){
+            OfflineCourseDAO.getInstance().update(c);
+            CourseDAO.getInstance().update(c);
+            load();
+        }else System.out.println("Can not change! This course already contained");
+    }
+    //Xoa khoa hoc
+    public void delete(Course c){
+        CourseDAO.getInstance().delete(c);
+        if(c instanceof OnlineCourse){
+            OnlineDAO.getInstance().delete(new OnlineCourse("","","",c));
+        }
+        if(c instanceof OfflineCourse){
+            OfflineCourseDAO.getInstance().delete(new OfflineCourse("","","",c));
+        }
+        load();
+
+    }
 }

@@ -80,9 +80,35 @@ public class Validator {
         String campus = sc.nextLine();
         return new OfflineCourse(begin, end, campus, c);
     }
+    // nhap vao khoa offline de update
+    public static OfflineCourse updateInputOfflineCourse(String msg){
+        System.out.println(msg);
+        String id = "";
+        String name = sc.nextLine();
+        int credits = checkNum("Enter credits:");
+        String begin = checkBegin("Enter begin date: ");
+        String end = checkEnd("Enter End Date: ", begin);
+        String campus = sc.nextLine();
+        return new OfflineCourse(begin, end, campus, new Course(id,name,credits));
+    }
+    // nhap vao khoa online de update
+    public static OnlineCourse inputUpdateOnlineCourse(String msg){
+        System.out.println(msg);
+        String id = "";
+        String name = sc.nextLine();
+        int credits = checkNum("Enter credits:");
+        System.out.println("Please enter platform: ");
+        String platform = sc.nextLine();
+        System.out.println("Please enter instructors: ");
+        String instructor = sc.nextLine();
+        System.out.println("Please enter note: ");
+        String note = sc.nextLine();
+        return new OnlineCourse(platform, instructor, note, new Course(id,name,credits));
+    }
     // nhap vao khoa online
     public static OnlineCourse inputOnlineCourse(String msg){
         Course c = inputCourse("Enter Information:");
+        int credits = checkNum("Enter credits:");
         System.out.println("Please enter platform: ");
         String platform = sc.nextLine();
         System.out.println("Please enter instructors: ");
