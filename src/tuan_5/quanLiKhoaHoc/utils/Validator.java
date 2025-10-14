@@ -77,6 +77,7 @@ public class Validator {
         Course c = inputCourse("Enter Information:");
         String begin = checkBegin("Enter begin date: ");
         String end = checkEnd("Enter End Date: ", begin);
+        System.out.println("Enter campus: ");
         String campus = sc.nextLine();
         return new OfflineCourse(begin, end, campus, c);
     }
@@ -88,6 +89,7 @@ public class Validator {
         int credits = checkNum("Enter credits:");
         String begin = checkBegin("Enter begin date: ");
         String end = checkEnd("Enter End Date: ", begin);
+        System.out.println("Enter campus: ");
         String campus = sc.nextLine();
         return new OfflineCourse(begin, end, campus, new Course(id,name,credits));
     }

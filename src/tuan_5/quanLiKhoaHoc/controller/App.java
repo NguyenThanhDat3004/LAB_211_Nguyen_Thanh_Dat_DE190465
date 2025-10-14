@@ -75,7 +75,6 @@ public class App extends Menu1{
                 // ham  xoa
                 System.out.println("Enter id course you want delete: ");
                 String id1 = sc.nextLine();
-                m.searchById(id1);
                 Course c = m.searchById(id1);
                 if(c!=null) m.delete(c);
                 else System.out.println("Can not find this id");
@@ -86,6 +85,9 @@ public class App extends Menu1{
                 break;
             case 5:
                 System.out.println("Search information base on course name");
+                System.out.println("Enter name: ");
+                String name = sc.nextLine();
+                m.searchByName(name);
                 so.displayListSearch(m);
                 break;
             case 6: 

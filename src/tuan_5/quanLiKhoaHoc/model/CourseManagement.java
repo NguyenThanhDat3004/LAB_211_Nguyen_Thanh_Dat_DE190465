@@ -87,7 +87,7 @@ public class CourseManagement {
     }
     // ham update online
     public void updateOnline(OnlineCourse c){
-        if(checkContain(c)){
+        if(!checkContain(c)){
             OnlineDAO.getInstance().update(c);
             CourseDAO.getInstance().update(c);
             load();
@@ -95,7 +95,7 @@ public class CourseManagement {
     }
     // ham update offline
     public void updateOffline(OfflineCourse c){
-        if(checkContain(c)){
+        if(!checkContain(c)){
             OfflineCourseDAO.getInstance().update(c);
             CourseDAO.getInstance().update(c);
             load();
