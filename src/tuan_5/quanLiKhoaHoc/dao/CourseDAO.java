@@ -24,8 +24,8 @@ public class CourseDAO implements  DAOInterface<Course> {
             st.setInt(3,course.getCredits());
 
             result = st.executeUpdate(); // tra ve so luong dong bi thay doi
-//            System.out.println("You excuted: " + sql);
-//            System.out.println("Have " + result + " changed");
+            System.out.println("You excuted: " + sql);
+            System.out.println("Have " + result + " changed");
             JDBCUtils.closeConnection(co);
         } catch (SQLException e) {
             throw new RuntimeException(e);
