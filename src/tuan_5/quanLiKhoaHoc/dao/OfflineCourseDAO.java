@@ -10,12 +10,6 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 public class OfflineCourseDAO implements DAOInterface<OfflineCourse>{
-    // goi ham nay ma khong can tao doi tuong cua lop nay, thay vi dung constructor
-    // tuc la neu khai bao:
-    //OfflineCourseDAO dao1 = OfflineCourseDAO.getInstance();
-    //OfflineCourseDAO dao2 = OfflineCourseDAO.getInstance();
-    // dao1 và dao2 cùng trỏ tới 1 đối tượng duy nhất
-    // con neu tao bang constructor thi 2 cai nay se tro toi 2 vung nho khac nhau ,tuc 2 doi tuong khac nhau
     public static OfflineCourseDAO getInstance(){
         return new OfflineCourseDAO();
     }
@@ -52,16 +46,16 @@ public class OfflineCourseDAO implements DAOInterface<OfflineCourse>{
         int result = 0;
         try{
             Connection con = JDBCUtils.getConnection();
-            String sql = "UPDATE OfflineCourse"+
-                    " SET "+"course_id=?,"+"course_name=?,"+"credits=?,"+"begin_date=?,"+"end_date=?,"+"campus=? "+"WHERE course_id = ?";
+            String sql = "UPDATE OfflineCourse " +
+                    "SET course_name=?, credits=?, begin_date=?, end_date=?, campus=? " +
+                    "WHERE course_id=?";
             PreparedStatement st = con.prepareStatement(sql);
-            st.setString(1,offlineCourse.getCourseID());
-            st.setString(2,offlineCourse.getCourseName());
-            st.setInt(3,offlineCourse.getCredits());
-            st.setString(4,offlineCourse.getBegin());
-            st.setString(5,offlineCourse.getEnd());
-            st.setString(6,offlineCourse.getCampus());
-            st.setString(7,offlineCourse.getCourseID());
+            st.setString(1, offlineCourse.getCourseName());
+            st.setInt(2, offlineCourse.getCredits());
+            st.setString(3, offlineCourse.getBegin());
+            st.setString(4, offlineCourse.getEnd());
+            st.setString(5, offlineCourse.getCampus());
+            st.setString(6, offlineCourse.getCourseID());
             result = st.executeUpdate();
             System.out.println("You excuted: "+sql);
             System.out.println("Have "+result+" changed");

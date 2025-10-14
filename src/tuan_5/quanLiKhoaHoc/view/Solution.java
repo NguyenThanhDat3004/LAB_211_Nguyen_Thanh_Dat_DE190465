@@ -32,6 +32,4 @@ public class Solution {
             System.out.println(c.getListSearch().get(i));
         }
     }
-    
-    
 }

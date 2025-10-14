@@ -39,29 +39,34 @@ public class OnlineDAO implements DAOInterface<OnlineCourse> {
     @Override
     public int update(OnlineCourse onlineCourse) {
         int result = 0;
-        // bat ngoai le
-        try{
+        try {
             Connection con = JDBCUtils.getConnection();
-            String sql = "UPDATE OnlineCourse"+
-                    " SET "+
-                    " course_id = ?, "+" course_name = ?, "+" credits = ?, "+" platform = ?, "+" note = ?, "+" instructor = ?, "+" WHERE course_id= ?";
+            String sql = "UPDATE OnlineCourse " +
+                    "SET course_name = ?, " +
+                    "credits = ?, " +
+                    "platform = ?, " +
+                    "note = ?, " +
+                    "instructor = ? " +
+                    "WHERE course_id = ?";
             PreparedStatement st = con.prepareStatement(sql);
-            st.setString(1,onlineCourse.getCourseID());
-            st.setString(2,onlineCourse.getCourseName());
-            st.setInt(3,onlineCourse.getCredits());
-            st.setString(4,onlineCourse.getPlatform());
-            st.setString(5,onlineCourse.getNote());
-            st.setString(6,onlineCourse.getInstructors());
-            st.setString(7,onlineCourse.getCourseID());
+            st.setString(1, onlineCourse.getCourseName());
+            st.setInt(2, onlineCourse.getCredits());
+            st.setString(3, onlineCourse.getPlatform());
+            st.setString(4, onlineCourse.getNote());
+            st.setString(5, onlineCourse.getInstructors());
+            st.setString(6, onlineCourse.getCourseID());
+
             result = st.executeUpdate();
-            System.out.println("You executed: "+sql);
-            System.out.println("Have "+result+" changed");
+            System.out.println("You executed: " + sql);
+            System.out.println("Have " + result + " changed");
+
             JDBCUtils.closeConnection(con);
         } catch (Exception e) {
             e.printStackTrace();
         }
         return result;
     }
+
 
     @Override
     public int delete(OnlineCourse onlineCourse) {

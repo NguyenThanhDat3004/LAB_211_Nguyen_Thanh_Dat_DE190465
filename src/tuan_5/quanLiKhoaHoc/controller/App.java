@@ -56,15 +56,16 @@ public class App extends Menu1{
                 System.out.println("Enter ID: ");
                 String id= sc.nextLine();
                 Course b = m.searchById(id);
+                System.out.println("ID nhập vào là: [" + b + "]");
+                System.out.println("ID nhập vào là: [" + id + "]");
                 if(b!=null){
+                    System.out.println("debug");
                     if(b instanceof OfflineCourse){
-                        OfflineCourse c = Validator.updateInputOfflineCourse("Enter your update: ");
-                        c.setCourseID(id);
+                        OfflineCourse c = Validator.updateInputOfflineCourse("Enter your update: ",id);
                         m.updateOffline(c);
                     }
                     if(b instanceof OnlineCourse){
-                        OnlineCourse c =  Validator.inputUpdateOnlineCourse("Enter your update: ");
-                        c.setCourseID(id);
+                        OnlineCourse c =  Validator.inputUpdateOnlineCourse("Enter your update: ",id);
                         m.updateOnline(c);
                     }
                 }else{

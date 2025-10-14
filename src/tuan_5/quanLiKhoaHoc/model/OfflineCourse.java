@@ -57,10 +57,6 @@ public class OfflineCourse extends Course{
 
     @Override
     public String toString() {
-        return "OfflineCourse{" +
-                "begin='" + begin + '\'' +
-                ", end='" + end + '\'' +
-                ", campus='" + campus + '\'' +
-                '}';
+        return super.toString()+"-"+ begin + "-"  + end + "-" +campus;
     }
 }

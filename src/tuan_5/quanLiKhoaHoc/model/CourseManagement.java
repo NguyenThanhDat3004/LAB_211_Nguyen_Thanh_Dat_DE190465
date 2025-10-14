@@ -80,11 +80,28 @@ public class CourseManagement {
         listSearch.clear();
         listSearch = listCourse.stream().filter(s->s.getCourseName().equalsIgnoreCase(name)).toList();
     }
-    // tim kiem theo id
-    public Course searchById(String id){
+    // tim kiem de update
+    public Course searchById(String id) {
         listSearch.clear();
-        return listCourse.stream().filter(s->s.getCourseID().equalsIgnoreCase(id)).findFirst().orElse(null);
+
+        // Tìm trong danh sách OfflineCourse trước
+        for (OfflineCourse oc : listCourseOffline) {
+            if (oc.getCourseID().equalsIgnoreCase(id)) {
+                return oc; // trả về đúng kiểu OfflineCourse
+            }
+        }
+
+        // Tìm trong danh sách OnlineCourse
+        for (OnlineCourse oc : listCourseOnline) {
+            if (oc.getCourseID().equalsIgnoreCase(id)) {
+                return oc; // trả về đúng kiểu OnlineCourse
+            }
+        }
+
+        // Nếu không tìm thấy, trả về null
+        return null;
     }
+
     // ham update online
     public void updateOnline(OnlineCourse c){
         if(!checkContain(c)){
@@ -105,12 +122,11 @@ public class CourseManagement {
     public void delete(Course c){
         CourseDAO.getInstance().delete(c);
         if(c instanceof OnlineCourse){
-            OnlineDAO.getInstance().delete(new OnlineCourse("","","",c));
+            OnlineDAO.getInstance().delete((OnlineCourse) c);
         }
         if(c instanceof OfflineCourse){
-            OfflineCourseDAO.getInstance().delete(new OfflineCourse("","","",c));
+            OfflineCourseDAO.getInstance().delete((OfflineCourse) c);
         }
         load();
-
     }
 }

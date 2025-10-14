@@ -57,8 +57,6 @@ public class OnlineCourse extends Course{
 
     @Override
     public String toString() {
-        return  "platform='" + platform + '\'' +
-                ", instructors='" + instructors + '\'' +
-                ", note='" + note ;
+        return  super.toString()+"-"+platform + "-" + instructors +"-"+ note ;
     }
 }

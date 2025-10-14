@@ -24,8 +24,8 @@ public class CourseDAO implements  DAOInterface<Course> {
             st.setInt(3,course.getCredits());
 
             result = st.executeUpdate(); // tra ve so luong dong bi thay doi
-            System.out.println("You excuted: " + sql);
-            System.out.println("Have " + result + " changed");
+//            System.out.println("You excuted: " + sql);
+//            System.out.println("Have " + result + " changed");
             JDBCUtils.closeConnection(co);
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -38,14 +38,13 @@ public class CourseDAO implements  DAOInterface<Course> {
         try {
             Connection co = JDBCUtils.getConnection();
             String sql = "UPDATE Course " +
-                    " SET " +
-                    "course_id=?," +
-                    "course_name=?," +"credits=?"+ " WHERE course_id= ?";
+                    " SET course_name=?, credits=? " +
+                    " WHERE course_id=?";
+
             PreparedStatement st = co.prepareStatement(sql);
-            st.setString(1,course.getCourseID());
-            st.setString(2,course.getCourseName());
-            st.setInt(3,course.getCredits());
-            st.setString(4,course.getCourseID());
+            st.setString(1, course.getCourseName());
+            st.setInt(2, course.getCredits());
+            st.setString(3, course.getCourseID());
             result = st.executeUpdate();
             System.out.println("You excuted: " + sql);
             System.out.println("Have " + result + " changed");
