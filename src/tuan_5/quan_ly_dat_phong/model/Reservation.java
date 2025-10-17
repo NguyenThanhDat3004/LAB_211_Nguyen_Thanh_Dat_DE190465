@@ -1,9 +1,8 @@
 package tuan_5.quan_ly_dat_phong.model;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.*;
 
-public class Reservation {
+public class Reservation extends FlightInformation {
     private String bookingID;
     private String customerName;
     private String phoneNumber;

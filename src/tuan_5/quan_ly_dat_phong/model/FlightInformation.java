@@ -41,4 +41,9 @@ public class FlightInformation {
     public void setTimePickUp(LocalDate timePickUp) {
         this.timePickUp = timePickUp;
     }
+
+    @Override
+    public String toString() {
+        return flightNumber+"-"+seatNumber+"-"+timePickUp;
+    }
 }
