@@ -1,6 +1,8 @@
 package tuan_5.quan_ly_dat_phong.controller;
 
+import tuan_5.quan_ly_dat_phong.model.Reservation;
 import tuan_5.quan_ly_dat_phong.model.ReservationManager;
+import tuan_5.quan_ly_dat_phong.utils.Validator;
 import tuan_5.quan_ly_dat_phong.view.Menu1;
 import tuan_5.quan_ly_dat_phong.view.Solution;
 
@@ -17,7 +19,8 @@ public class App extends Menu1 {
     public void execute(int n) {
         switch (n){
             case 1:
-
+                Reservation a = Validator.enterRe("Enter information: ");
+                
                 break;
             case 2:
 
