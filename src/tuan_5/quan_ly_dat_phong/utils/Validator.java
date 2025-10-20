@@ -2,6 +2,7 @@ package tuan_5.quan_ly_dat_phong.utils;
 
 import tuan_5.quan_ly_dat_phong.model.FlightInformation;
 import tuan_5.quan_ly_dat_phong.model.Reservation;
+import tuan_5.quan_ly_dat_phong.model.ReservationManager;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -11,66 +12,67 @@ import java.util.Scanner;
 public class Validator {
 
     static Scanner sc = new Scanner(System.in);
-    // Check ID: 6 digits
+
     public static String checkId(String msg) {
-        System.out.println(msg);
+        System.out.print(msg);
         while (true) {
             try {
                 String id = sc.nextLine().trim();
                 if (id.length() != 6) {
-                    System.out.println("Re-enter ID with 6 digits");
+                    System.out.println("Data input is invalid");
+                    System.out.print("ID: ");
                     continue;
                 }
                 Integer.parseInt(id);
                 return id;
             } catch (NumberFormatException e) {
-                System.out.println("Re-enter ID with 6 digits");
+                System.out.println("Data input is invalid");
+                System.out.print("ID: ");
             }
         }
     }
 
-    // Check Customer Name: only letters and spaces
     public static String checkCustomerName(String msg) {
-        System.out.println(msg);
+        System.out.print(msg);
         while (true) {
             String name = sc.nextLine().trim();
             if (name.matches("[a-zA-Z ]+")) {
                 return name;
             } else {
-                System.out.println("Re-enter name (letters and spaces only)");
+                System.out.println("Data input is invalid");
+                System.out.print("Name: ");
             }
         }
     }
 
-    // Check Phone Number: 12 digits
     public static String checkPhoneNumber(String msg) {
-        System.out.println(msg);
+        System.out.print(msg);
         while (true) {
             String phone = sc.nextLine().trim();
             if (phone.matches("\\d{12}")) {
                 return phone;
             } else {
-                System.out.println("Re-enter phone number (12 digits required)");
+                System.out.println("Data input is invalid");
+                System.out.print("Phone: ");
             }
         }
     }
 
-    // Check Room Number: 4 digits
     public static String checkRoomNumber(String msg) {
-        System.out.println(msg);
+        System.out.print(msg);
         while (true) {
             String room = sc.nextLine().trim();
             if (room.matches("\\d{4}")) {
                 return room;
             } else {
-                System.out.println("Re-enter room number (4 digits required)");
+                System.out.println("Data input is invalid");
+                System.out.print("RoomNumber: ");
             }
         }
     }
 
-    // Check Booking Date: must be after today
     public static LocalDate checkBookingDate(String msg) {
-        System.out.println(msg);
+        System.out.print(msg);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         while (true) {
             try {
@@ -79,75 +81,219 @@ public class Validator {
                 if (bookingDate.isAfter(LocalDate.now())) {
                     return bookingDate;
                 } else {
-                    System.out.println("Booking date must be after today. Re-enter:");
+                    System.out.println("Data input is invalid");
+                    System.out.print("BookingDate: ");
                 }
             } catch (DateTimeParseException e) {
-                System.out.println("Invalid format. Use dd/MM/yyyy");
+                System.out.println("Data input is invalid");
+                System.out.print("BookingDate: ");
             }
         }
     }
+
     public static LocalDate checkTimePickUp(String msg, LocalDate bookingDate) {
-        System.out.println(msg + " (dd/MM/yyyy)");
+        System.out.print(msg);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         while (true) {
             try {
                 String input = sc.nextLine().trim();
                 LocalDate pickUp = LocalDate.parse(input, formatter);
-
                 LocalDate today = LocalDate.now();
 
                 if (pickUp.isAfter(today) && pickUp.isBefore(bookingDate)) {
                     return pickUp;
                 } else {
-                    System.out.println(" Pick up date must be after today and before booking date. Re-enter:");
+                    System.out.println("Data input is invalid");
+                    System.out.print("TimePickUp: ");
                 }
             } catch (DateTimeParseException e) {
-                System.out.println(" Invalid format. Use dd/MM/yyyy. Re-enter:");
+                System.out.println("Data input is invalid");
+                System.out.print("TimePickUp: ");
             }
         }
     }
+
     public static String checkFlightNumber(String msg){
-        System.out.println(msg);
+        System.out.print(msg);
         while(true){
             String flightNumber = sc.nextLine().trim();
             if(flightNumber.isEmpty()){
-                System.out.println(" Flight number cannot be empty. Re-enter:");
+                System.out.println("Data input is invalid");
+                System.out.print("Flight: ");
                 continue;
             }
             if(!flightNumber.matches("[A-Z0-9]+")){
-                System.out.println(" Flight number must contain only uppercase letters and digits. Re-enter:");
+                System.out.println("Data input is invalid");
+                System.out.print("Flight: ");
                 continue;
             }
             return flightNumber;
         }
     }
+
     public static String checkSeatNumber(String msg){
-        System.out.println(msg);
+        System.out.print(msg);
         while(true){
             String seatNumber = sc.nextLine().trim();
             if(seatNumber.isEmpty()){
-                System.out.println("Seat number cannot be empty. Re-enter:");
+                System.out.println("Data input is invalid");
+                System.out.print("Seat: ");
                 continue;
             }
-            if(!seatNumber.matches("[A-Z]\\d{1,2}")){
-                System.out.println("Seat number must be in format like 'A12' or 'B3'. Re-enter:");
+            if(!seatNumber.matches("[A-Z]\\d{1,3}")){
+                System.out.println("Data input is invalid");
+                System.out.print("Seat: ");
                 continue;
             }
             return seatNumber;
         }
     }
 
-    public static Reservation enterRe(String msg){
-        System.out.println(msg);
-        String id = checkId("Enter id: ");
-        String cusName = checkCustomerName("Enter customer name: ");
-        String phoneNumber = checkPhoneNumber("Enter phone number: ");
-        String roomNumber = checkRoomNumber("Enter room number: ");
-        LocalDate bookingDate = checkBookingDate("Enter booking date: ");
-        String flightNumber = checkFlightNumber("Enter flight number: ");
-        String seatNumber = checkSeatNumber("Enter seat number: ");
-        LocalDate s = checkTimePickUp("Enter time: ", bookingDate);
-        FlightInformation t = new FlightInformation(flightNumber,seatNumber,s);
-        return new Reservation(id,cusName,phoneNumber,roomNumber,bookingDate,t);
+    public static boolean confirmYesNo(String msg){
+        System.out.print(msg);
+        while(true){
+            String input = sc.nextLine().trim().toUpperCase();
+            if(input.equals("Y")){
+                return true;
+            } else if(input.equals("N")){
+                return false;
+            } else {
+                System.out.println("Data input is invalid");
+                System.out.print(msg);
+            }
+        }
+    }
+
+    public static Reservation enterRe(String msg, ReservationManager manager){
+        if(!msg.isEmpty()) System.out.println(msg);
+
+        String id = checkId("ID: ");
+        String cusName = checkCustomerName("Name: ");
+        String phoneNumber = checkPhoneNumber("Phone: ");
+        String roomNumber = checkRoomNumber("RoomNumber: ");
+        LocalDate bookingDate = checkBookingDate("BookingDate: ");
+
+        boolean needPickup = confirmYesNo("Need airport pick up? (Y/N): ");
+        FlightInformation flightInfo = null;
+
+        if(needPickup){
+            String flightNumber = checkFlightNumber("Flight: ");
+            String seatNumber = checkSeatNumber("Seat: ");
+            LocalDate timePickUp = checkTimePickUp("TimePickUp: ", bookingDate);
+            flightInfo = new FlightInformation(flightNumber, seatNumber, timePickUp);
+        } else {
+            flightInfo = new FlightInformation();
+        }
+
+        return new Reservation(id, cusName, phoneNumber, roomNumber, bookingDate, flightInfo);
+    }
+
+    public static Reservation updateRe(Reservation oldRes, ReservationManager manager){
+        System.out.println("Current information: " + oldRes);
+        System.out.println("(Press Enter to keep current value)");
+
+        System.out.print("Name [" + oldRes.getCustomerName() + "]: ");
+        String newName = sc.nextLine().trim();
+        if(!newName.isEmpty()){
+            while(!newName.matches("[a-zA-Z ]+")){
+                System.out.println("Data input is invalid");
+                System.out.print("Name: ");
+                newName = sc.nextLine().trim();
+                if(newName.isEmpty()) break;
+            }
+        }
+        String cusName = newName.isEmpty() ? oldRes.getCustomerName() : newName;
+
+        System.out.print("Phone [" + oldRes.getPhoneNumber() + "]: ");
+        String newPhone = sc.nextLine().trim();
+        if(!newPhone.isEmpty()){
+            while(!newPhone.matches("\\d{12}")){
+                System.out.println("Data input is invalid");
+                System.out.print("Phone: ");
+                newPhone = sc.nextLine().trim();
+                if(newPhone.isEmpty()) break;
+            }
+        }
+        String phoneNumber = newPhone.isEmpty() ? oldRes.getPhoneNumber() : newPhone;
+
+        System.out.print("RoomNumber [" + oldRes.getRoomNumber() + "]: ");
+        String newRoom = sc.nextLine().trim();
+        if(!newRoom.isEmpty()){
+            while(!newRoom.matches("\\d{4}")){
+                System.out.println("Data input is invalid");
+                System.out.print("RoomNumber: ");
+                newRoom = sc.nextLine().trim();
+                if(newRoom.isEmpty()) break;
+            }
+        }
+        String roomNumber = newRoom.isEmpty() ? oldRes.getRoomNumber() : newRoom;
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        System.out.print("BookingDate [" + oldRes.getBookingDate().format(formatter) + "]: ");
+        String newBookingStr = sc.nextLine().trim();
+        LocalDate bookingDate = oldRes.getBookingDate();
+        if(!newBookingStr.isEmpty()){
+            while(true){
+                try{
+                    LocalDate newDate = LocalDate.parse(newBookingStr, formatter);
+                    if(newDate.isAfter(LocalDate.now())){
+                        bookingDate = newDate;
+                        break;
+                    } else {
+                        System.out.println("Data input is invalid");
+                        System.out.print("BookingDate: ");
+                        newBookingStr = sc.nextLine().trim();
+                        if(newBookingStr.isEmpty()) break;
+                    }
+                } catch(DateTimeParseException e){
+                    System.out.println("Data input is invalid");
+                    System.out.print("BookingDate: ");
+                    newBookingStr = sc.nextLine().trim();
+                    if(newBookingStr.isEmpty()) break;
+                }
+            }
+        }
+
+        FlightInformation flightInfo = oldRes.getFlightInformation();
+        boolean hasOldFlight = (flightInfo != null && !flightInfo.getFlightNumber().isEmpty());
+
+        System.out.print("Need airport pick up? (Y/N) [" + (hasOldFlight ? "Y" : "N") + "]: ");
+        String needPickupStr = sc.nextLine().trim().toUpperCase();
+
+        if(needPickupStr.isEmpty()){
+            needPickupStr = hasOldFlight ? "Y" : "N";
+        }
+
+        if(needPickupStr.equals("Y")){
+            String oldFlight = hasOldFlight ? flightInfo.getFlightNumber() : "";
+            System.out.print("Flight [" + oldFlight + "]: ");
+            String newFlight = sc.nextLine().trim();
+            if(newFlight.isEmpty()) newFlight = oldFlight;
+
+            String oldSeat = hasOldFlight ? flightInfo.getSeatNumber() : "";
+            System.out.print("Seat [" + oldSeat + "]: ");
+            String newSeat = sc.nextLine().trim();
+            if(newSeat.isEmpty()) newSeat = oldSeat;
+
+            String oldTime = hasOldFlight ? flightInfo.getTimePickUp().format(formatter) : "";
+            System.out.print("TimePickUp [" + oldTime + "]: ");
+            String newTimeStr = sc.nextLine().trim();
+            LocalDate newTime = hasOldFlight ? flightInfo.getTimePickUp() : LocalDate.now().plusDays(1);
+
+            if(!newTimeStr.isEmpty()){
+                try{
+                    newTime = LocalDate.parse(newTimeStr, formatter);
+                } catch(DateTimeParseException e){
+                    System.out.println("Invalid date format, keeping old value");
+                }
+            }
+
+            flightInfo = new FlightInformation(newFlight, newSeat, newTime);
+        } else {
+            flightInfo = new FlightInformation();
+        }
+
+        return new Reservation(oldRes.getBookingID(), cusName, phoneNumber,
+                roomNumber, bookingDate, flightInfo);
     }
 }

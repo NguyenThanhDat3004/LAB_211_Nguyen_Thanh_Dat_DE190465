@@ -16,3 +16,12 @@ con sau -- thi no da bien thanh mot ghi chu ==> toan bo du lieu bi loi len
 ==> loi lap trinh pho bien va khi dung statement cung se bi
 kieu nguoi ta nhap vao mot phan cau lenh sql:)))
 
+---------------
+Muc dich su dung instance
+    goi ham nay ma khong can tao doi tuong cua lop nay, thay vi dung constructor
+    tuc la neu khai bao:
+    OfflineCourseDAO dao1 = OfflineCourseDAO.getInstance();
+    OfflineCourseDAO dao2 = OfflineCourseDAO.getInstance();
+    dao1 và dao2 cùng trỏ tới 1 đối tượng duy nhất
+    con neu tao bang constructor thi 2 cai nay se tro toi 2 vung nho khac nhau ,tuc 2 doi tuong khac nhau
+

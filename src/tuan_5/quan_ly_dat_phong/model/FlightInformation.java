@@ -4,14 +4,15 @@ import java.time.LocalDate;
 
 public class FlightInformation {
     private String flightNumber;
-    private  String seatNumber;
+    private String seatNumber;
     private LocalDate timePickUp;
-    // con
-    public FlightInformation(String flightNumber,String seatNumber,LocalDate timePickUp){
+
+    public FlightInformation(String flightNumber, String seatNumber, LocalDate timePickUp){
         this.flightNumber = flightNumber;
         this.seatNumber = seatNumber;
         this.timePickUp = timePickUp;
     }
+
     public FlightInformation(){
         this.flightNumber = "";
         this.seatNumber = "";
@@ -44,6 +45,6 @@ public class FlightInformation {
 
     @Override
     public String toString() {
-        return flightNumber+"-"+seatNumber+"-"+timePickUp;
+        return flightNumber + "-" + seatNumber + "-" + timePickUp;
     }
 }
