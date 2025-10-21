@@ -6,10 +6,17 @@ public class OrderDetail {
     private int quantity;
     private  double amount;
     private int ordersId;
-    public OrderDetail(Fruit fruit, int quantity) {
+    public OrderDetail(Fruit fruit, int quantity, int ordersId) {
+        this.ordersId = ordersId;
         this.fruit = fruit;
         this.quantity = quantity;
         this.amount = fruit.getPrice()*quantity;
+    }
+    public OrderDetail(Fruit fruit, int quantity, int ordersId, double amount){
+        this.fruit = fruit;
+        this.quantity = quantity;
+        this.ordersId = ordersId;
+        this.amount = amount;
     }
     public Fruit getFruit() {
         return fruit;
