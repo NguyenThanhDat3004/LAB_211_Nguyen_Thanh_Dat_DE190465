@@ -1,7 +1,6 @@
 package tuan_6.dao;
 
 import tuan_5.quanLiKhoaHoc.dao.JDBCUtils;
-import tuan_6.model.Fruit;
 import tuan_6.model.Order;
 
 import java.sql.Connection;
