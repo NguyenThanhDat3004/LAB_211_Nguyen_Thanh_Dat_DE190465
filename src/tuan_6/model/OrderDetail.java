@@ -5,14 +5,14 @@ public class OrderDetail {
     private Fruit fruit;
     private int quantity;
     private  double amount;
-    private int ordersId;
-    public OrderDetail(Fruit fruit, int quantity, int ordersId) {
+    private String ordersId;
+    public OrderDetail(Fruit fruit, int quantity, String ordersId) {
         this.ordersId = ordersId;
         this.fruit = fruit;
         this.quantity = quantity;
         this.amount = fruit.getPrice()*quantity;
     }
-    public OrderDetail(Fruit fruit, int quantity, int ordersId, double amount){
+    public OrderDetail(Fruit fruit, int quantity, String ordersId, double amount){
         this.fruit = fruit;
         this.quantity = quantity;
         this.ordersId = ordersId;
@@ -28,7 +28,7 @@ public class OrderDetail {
         return amount;
     }
 
-    public int getOrdersId() {
+    public String getOrdersId() {
         return ordersId;
     }
     @Override

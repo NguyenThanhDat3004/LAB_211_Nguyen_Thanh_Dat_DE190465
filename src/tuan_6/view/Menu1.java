@@ -4,6 +4,7 @@
  */
 package tuan_6.view;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -33,9 +34,9 @@ public abstract class Menu1{
         return sc.nextInt();
     }
 //-------------------------------------------
-    public abstract void execute(int n);//thi hanh menu
+    public abstract void execute(int n) throws SQLException;//thi hanh menu
 //-------------------------------------------
-    public void run(){// chay Menu
+    public void run() throws SQLException {// chay Menu
         while(true){
             int n=getSelected();
             execute(n);

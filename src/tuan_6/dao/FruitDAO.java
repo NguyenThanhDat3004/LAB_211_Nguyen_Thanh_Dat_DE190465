@@ -1,7 +1,4 @@
 package tuan_6.dao;
-
-import tuan_5.quanLiKhoaHoc.dao.DAOInterface;
-import tuan_5.quanLiKhoaHoc.dao.JDBCUtils;
 import tuan_6.model.Fruit;
 
 import java.sql.*;
@@ -9,13 +6,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FruitDAO implements DAOInterface<Fruit> {
-
+    public static FruitDAO getInstance(){
+        return new FruitDAO();
+    }
 
     @Override
     public int add(Fruit fruit) throws SQLException {
         int result;
         try {
-            Connection co = tuan_5.quanLiKhoaHoc.dao.JDBCUtils.getConnection();
+            Connection co = tuan_6.dao.JDBCUtils.getConnection();
             String sql = "INSERT INTO Fruit(fruit_id,name,origin,price,quantity)" +
                     " VALUES (?,?,?,?,?)";
             PreparedStatement st = co.prepareStatement(sql);

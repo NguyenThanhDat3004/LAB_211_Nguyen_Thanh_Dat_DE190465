@@ -6,8 +6,8 @@ import java.util.List;
 public class Order {
     private String customerName;
     private double total;
-    private int orderID;
-    public Order(String customerName, double total, int orderID){
+    private String orderID;
+    public Order(String customerName, double total, String orderID){
         this.customerName = customerName;
         this.total = total;
         this.orderID = orderID;
@@ -25,11 +25,11 @@ public class Order {
         return total;
     }
 
-    public int getOrderID() {
+    public String getOrderID() {
         return orderID;
     }
 
-    public void setOrderID(int orderID) {
+    public void setOrderID(String orderID) {
         this.orderID = orderID;
     }
 
