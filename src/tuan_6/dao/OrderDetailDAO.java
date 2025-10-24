@@ -1,5 +1,4 @@
 package tuan_6.dao;
-import tuan_5.quanLiKhoaHoc.dao.JDBCUtils;
 import tuan_6.model.Fruit;
 import tuan_6.model.OrderDetail;
 import java.sql.Connection;
@@ -88,7 +87,7 @@ public class OrderDetailDAO implements DAOInterface<OrderDetail>{
         try {
             Connection con = JDBCUtils.getConnection();
             String sql = """
-            SELECT od.fruit_id, f.fruit_name, f.origin, od.orders_id, od.quantity, od.amount
+            SELECT od.fruit_id, f.name, f.origin, od.orders_id, od.quantity, od.amount
             FROM OrderDetail od
             JOIN Fruit f ON od.fruit_id = f.fruit_id
         """; // dung """ de viet chuoi nhieu dong thay vi + tung chuoi
