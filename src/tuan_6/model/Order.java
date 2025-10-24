@@ -1,8 +1,4 @@
 package tuan_6.model;
-
-import java.util.ArrayList;
-import java.util.List;
-
 public class Order {
     private String customerName;
     private double total;
@@ -12,27 +8,21 @@ public class Order {
         this.total = total;
         this.orderID = orderID;
     }
-
     public String getCustomerName() {
         return customerName;
     }
-
     public void setCustomerName(String customerName) {
         this.customerName = customerName;
     }
-
     public double getTotal() {
         return total;
     }
-
     public String getOrderID() {
         return orderID;
     }
-
     public void setOrderID(String orderID) {
         this.orderID = orderID;
     }
-
     public void setTotal(double total) {
         this.total = total;
     }

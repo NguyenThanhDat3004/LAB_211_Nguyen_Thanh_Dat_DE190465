@@ -27,7 +27,6 @@ public class OrderDetail {
     public double getAmount() {
         return amount;
     }
-
     public String getOrdersId() {
         return ordersId;
     }

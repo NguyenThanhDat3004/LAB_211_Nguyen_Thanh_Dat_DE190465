@@ -10,9 +10,22 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class User_Maganement {
-    List<Fruit> listFruit = new ArrayList<>();
-    List<OrderDetail> listOD = new ArrayList<>();
-    List<Order> listOrder = new ArrayList<>();
+    private List<Fruit> listFruit = new ArrayList<>();
+    private List<OrderDetail> listOD = new ArrayList<>();
+    private List<Order> listOrder = new ArrayList<>();
+
+    public List<Fruit> getListFruit() {
+        return listFruit;
+    }
+
+    public List<Order> getListOrder() {
+        return listOrder;
+    }
+
+    public List<OrderDetail> getListOD() {
+        return listOD;
+    }
+
     public User_Maganement() {
         load();
     }
@@ -26,6 +39,11 @@ public class User_Maganement {
     public boolean checkFruit(String id){
         Predicate<Fruit> containFruitId = s -> s.getFruit_id().equalsIgnoreCase(id);
         return listFruit.stream().filter(containFruitId).collect(Collectors.toList()).isEmpty();
+    }
+    // tim id
+    public Fruit findById(String id){
+        Predicate<Fruit> containFruitId = s -> s.getFruit_id().equalsIgnoreCase(id);
+        return listFruit.stream().filter(containFruitId).findFirst().orElse(null);
     }
     // them trai cay
     public boolean addFruit(Fruit fruit) throws SQLException {
@@ -111,5 +129,19 @@ public class User_Maganement {
             return true;
         }
         return false;
+    }
+    // cap nhat ton kho
+    public boolean increaseQuality(Fruit fruit, int quantity){
+        if((fruit.getQuantity()-quantity)==0){
+            FruitDAO.getInstance().delete(fruit);
+        } else if ((fruit.getQuantity()-quantity)<0) {
+            System.out.println("Quantity not enough. Try again.");
+            return false;
+        } else{
+            fruit.setQuantity(fruit.getQuantity()-quantity);
+            FruitDAO.getInstance().update(fruit);
+        }
+        load();
+        return true;
     }
 }

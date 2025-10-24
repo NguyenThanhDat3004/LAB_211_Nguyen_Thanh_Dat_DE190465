@@ -1,15 +1,12 @@
 package tuan_6.dao;
 import tuan_6.model.Fruit;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
 public class FruitDAO implements DAOInterface<Fruit> {
     public static FruitDAO getInstance(){
         return new FruitDAO();
     }
-
     @Override
     public int add(Fruit fruit) throws SQLException {
         int result;
@@ -76,7 +73,6 @@ public class FruitDAO implements DAOInterface<Fruit> {
 
         return result;
     }
-
     @Override
     public List<Fruit> selectAll() {
         List<Fruit> list = new ArrayList<>();

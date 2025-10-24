@@ -1,8 +1,6 @@
 package tuan_6.utils;
-
 import tuan_6.model.Fruit;
 import tuan_6.model.Order;
-
 import java.util.Scanner;
 
 public class Validator {
@@ -82,6 +80,21 @@ public class Validator {
         String customerName = sc.nextLine();
         double total = checkDouble("Enter Total Amount:");
         return new Order(customerName,total,orderID);
+    }
+    public static int checkNumInWhile(String msg){
+        System.out.println(msg);
+        while(true){
+            try{
+                int num = Integer.parseInt(sc.nextLine());
+                if(num<1||num>2){
+                    System.out.println("Please input 1 or 2");
+                    continue;
+                }
+                return num;
+            }catch(NumberFormatException e){
+                System.out.println("Not valid. Re enter a integer number");
+            }
+        }
     }
 
 }
