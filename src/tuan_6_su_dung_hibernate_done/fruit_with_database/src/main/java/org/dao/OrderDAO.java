@@ -41,6 +41,7 @@ public class OrderDAO implements DaoInterface<Orders>{
     }
     @Override
     public void add(Orders orders) throws SQLException {
+
         Transaction transaction = null;
         Session session = HibernateUtill.getSessionFactory().openSession();
         try{
@@ -53,7 +54,7 @@ public class OrderDAO implements DaoInterface<Orders>{
             if (transaction != null) transaction.rollback();
             e.printStackTrace();
         } finally {
-            session.close();
+//session.close();
         }
     }
     @Override

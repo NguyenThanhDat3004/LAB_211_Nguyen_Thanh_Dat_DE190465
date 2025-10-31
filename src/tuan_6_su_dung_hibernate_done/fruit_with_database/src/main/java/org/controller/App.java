@@ -31,6 +31,7 @@ public class App extends Menu1 {
                     System.out.println("Create a fruit! Please enter information!");
                     Fruit f = Validator.enterFruit();
                     FruitDAO.getInstance().add(f);
+                    m.load();
                     choice = Validator.checkNumInWhile("Do you want continue? Please choice 1 or 2?\n 1.Yes \n 2.No");
                     if(choice==2) System.out.println("Back to menu");
                 }while(choice==1);
@@ -43,6 +44,7 @@ public class App extends Menu1 {
                 m.addOrder(o);
                 int check = 0;
                 do{
+
                     so.displayFruit(m);
                     System.out.println("Enter your choice: ");
                     int tmp = Validator.checkInt("Integer only");

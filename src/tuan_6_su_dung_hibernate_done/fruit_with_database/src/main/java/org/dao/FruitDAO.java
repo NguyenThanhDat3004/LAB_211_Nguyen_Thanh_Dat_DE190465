@@ -26,7 +26,7 @@ public class FruitDAO implements DaoInterface<Fruit>{
             if (transaction != null) transaction.rollback();
             e.printStackTrace();
         } finally {
-            session.close();
+           // session.close();
         }
     }
     @Override

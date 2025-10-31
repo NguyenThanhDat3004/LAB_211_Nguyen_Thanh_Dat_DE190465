@@ -1,0 +1,6 @@
+buoc 3: Tao entity
+Luu y: anotation
+@Entity
+......
+buoc 4: tao file cau hinh hibernate.cfg.xml
+buoc 5: tao file hibernateUntill de lay ra cac thong tin da cau hinh va ket noi toi co so du lieu

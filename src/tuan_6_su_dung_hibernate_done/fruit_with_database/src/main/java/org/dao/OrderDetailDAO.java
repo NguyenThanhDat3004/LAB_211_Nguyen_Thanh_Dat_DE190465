@@ -28,7 +28,7 @@ public class OrderDetailDAO implements DaoInterface<OrderDetail>{
             if (transaction != null) transaction.rollback();
             e.printStackTrace();
         } finally {
-            session.close();
+            //session.close();
         }
     }
     @Override
